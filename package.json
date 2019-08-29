@@ -17,9 +17,11 @@
     "start": "next start"
   },
   "devDependencies": {
+    "@types/faker": "^4.1.5",
     "@types/next": "latest",
     "@types/react": "latest",
     "@types/react-dom": "latest",
+    "faker": "^4.1.0",
     "prettier": "latest",
     "typescript": "latest"
   }

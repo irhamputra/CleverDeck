@@ -23,8 +23,10 @@ import InboxIcon from "@material-ui/icons/MoveToInbox";
 import MailIcon from "@material-ui/icons/Mail";
 import NotificationIcon from "@material-ui/icons/Notifications";
 import Badge from "@material-ui/core/Badge";
-import Avatar from '@material-ui/core/Avatar';
-import { deepPurple } from '@material-ui/core/colors';
+import Avatar from "@material-ui/core/Avatar";
+import { deepPurple } from "@material-ui/core/colors";
+import Link from "../src/Link";
+import Grid from "@material-ui/core/Grid";
 
 const drawerWidth = 240;
 
@@ -84,6 +86,7 @@ const useStyles = makeStyles((theme: Theme) =>
       ...theme.mixins.toolbar
     },
     sectionDesktop: {
+      marginRight: 10,
       display: "none",
       [theme.breakpoints.up("md")]: {
         display: "flex"
@@ -93,11 +96,11 @@ const useStyles = makeStyles((theme: Theme) =>
       flexGrow: 1
     },
     purpleAvatar: {
-      color: '#fff',
+      color: "#fff",
       backgroundColor: deepPurple[500],
       marginRight: 5,
       marginLeft: 5
-    },
+    }
   })
 );
 
@@ -136,25 +139,45 @@ const MiniDrawer: React.FC<{ children: ReactNode }> = props => {
             <MenuIcon />
           </IconButton>
 
-          <Typography variant="h6" noWrap>
-            CleverDeck
-          </Typography>
+          <Grid
+            container
+            direction="row"
+            justify="space-between"
+            alignItems="center"
+            xs={12}
+          >
+            <Typography variant="h6" noWrap>
+              CleverDeck.io
+            </Typography>
 
-          <div className={classes.sectionDesktop}>
-            <IconButton aria-label="show 4 new mails" color="inherit">
-              <Badge badgeContent={4} color="error">
-                <MailIcon />
-              </Badge>
-            </IconButton>
+            <Grid
+              container
+              direction="row"
+              justify="flex-end"
+              alignItems="center"
+              xs={6}
+            >
+              <div className={classes.sectionDesktop}>
+                <IconButton aria-label="show 4 new mails" color="inherit">
+                  <Badge badgeContent={4} color="error">
+                    <MailIcon />
+                  </Badge>
+                </IconButton>
 
-            <IconButton aria-label="show 11 new notifications" color="inherit">
-              <Badge badgeContent={11} color="error">
-                <NotificationIcon />
-              </Badge>
-            </IconButton>
-          </div>
+                <IconButton
+                  aria-label="show 11 new notifications"
+                  color="inherit"
+                >
+                  <Badge badgeContent={11} color="error">
+                    <NotificationIcon />
+                  </Badge>
+                </IconButton>
+              </div>
 
-          <Avatar className={classes.purpleAvatar}>OP</Avatar>
+              <Avatar className={classes.purpleAvatar}>OP</Avatar>
+              <Typography variant="body1">Oreo Purreng</Typography>
+            </Grid>
+          </Grid>
         </Toolbar>
       </AppBar>
 
@@ -183,24 +206,28 @@ const MiniDrawer: React.FC<{ children: ReactNode }> = props => {
         </div>
         <Divider />
         <List>
-          {["Dashboard", "Homework", "Quizzes"].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
+          {["Dashboard", "Homework", "Quizzes", "TryOut"].map((text, index) => (
+            <Link href={`/${text.toLowerCase()}`}>
+              <ListItem button key={text}>
+                <ListItemIcon>
+                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                </ListItemIcon>
+                <ListItemText primary={text} />
+              </ListItem>
+            </Link>
           ))}
         </List>
         <Divider />
         <List>
           {["Profile", "Account", "Logout"].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
+            <Link href={`/${text.toLowerCase()}`}>
+              <ListItem button key={text}>
+                <ListItemIcon>
+                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                </ListItemIcon>
+                <ListItemText primary={text} />
+              </ListItem>
+            </Link>
           ))}
         </List>
       </Drawer>

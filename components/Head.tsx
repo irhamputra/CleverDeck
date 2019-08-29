@@ -11,7 +11,7 @@ interface HeadInterface {
 const Head = (props: HeadInterface) => (
   <NextHead>
     <meta charSet="UTF-8" />
-    <title>{props.title || ""}</title>
+    <title>{props.title}</title>
     <meta
       name="description"
       content={props.description}
